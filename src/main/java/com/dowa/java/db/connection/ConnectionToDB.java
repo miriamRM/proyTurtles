@@ -8,27 +8,11 @@ import java.sql.SQLException;
  * Created by rabanita on 17/05/15.
  */
 public class ConnectionToDB {
-    private static final String _dbURL = "jdbc:h2:~/test";
-    private String _dbUser = "sa";
-    private String _dbPwd = "";
-    private static ConnectionToDB instance = new ConnectionToDB();
+    private static String dbURL = "jdbc:h2:~/test";
+    private static String user = "sa";
+    private static String pass = "";
 
-    private ConnectionToDB(){}
-
-    private Connection createConnection() {
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection(_dbURL, _dbUser, _dbPwd);
-        } catch (SQLException e) {
-            System.err.println("SQL Exception " + e.getMessage());
-        }
-        catch (RuntimeException e) {
-            System.err.println("Runtime Exception " + e.getMessage());
-        }
-        return connection;
-    }
-    public static Connection getConnection(){
-        return instance.createConnection();
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(dbURL,user,pass);
     }
 }
