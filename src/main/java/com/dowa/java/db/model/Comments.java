@@ -36,4 +36,8 @@ public class Comments {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public void setIdComment(int idComment) {
+        this.idComment = idComment;
+    }
 }
