@@ -5,10 +5,14 @@
         <title></title>
     </head>
     <body style="text-align:center;">
-        <div style="font-size: 24">
-        Hola <%= request.getParameter("name") %>! <br>
-        Estas dentro de tu sesi&oacute;n.
-        </div>
-        <a href="/login-mvc-servlet">Regresar a la pagina de acceso.</a>
+        <c:if test="${session != null}">
+            <div style="font-size: 24">
+                Hola <%= request.getParameter("name") %>! <br>
+                Estas dentro de tu sesi&oacute;n.
+                Session ID = <c:out value="${session}"/>
+            </div>
+        </c:if>
+        <a href="/login.jsp">Regresar a la pagina de acceso.</a>
+
     </body>
 </html>
