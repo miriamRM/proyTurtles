@@ -12,6 +12,10 @@ public class Stories {
     private int down;
     private int votes;
 
+    public void setIdStory(int idStory) {
+        this.idStory = idStory;
+    }
+
     public int getIdStory() {
         return idStory;
     }

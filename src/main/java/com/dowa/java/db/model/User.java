@@ -36,4 +36,8 @@ public class User {
     public void setPass(String pass) {
         this.pass = pass;
     }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 }

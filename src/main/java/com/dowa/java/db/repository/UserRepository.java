@@ -37,6 +37,7 @@ public class UserRepository {
             pStatement.setString(1,eMail);
             ResultSet result = pStatement.executeQuery();
             if (result.next()){
+                user.setIdUser(result.getInt(1));
                 user.setUserName(result.getString(2));
                 user.seteMail(result.getString(3));
                 user.setPass(result.getString(4));
