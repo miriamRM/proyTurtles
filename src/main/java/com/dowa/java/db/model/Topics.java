@@ -18,4 +18,8 @@ public class Topics {
     public void setTopic(String topic) {
         this.topic = topic;
     }
+
+    public void setIdTopic(int idTopic) {
+        this.idTopic = idTopic;
+    }
 }
