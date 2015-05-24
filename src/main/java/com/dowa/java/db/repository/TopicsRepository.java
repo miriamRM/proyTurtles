@@ -69,7 +69,14 @@ public class TopicsRepository {
     //Eliminar
     public void deleteTopic(int idTopic) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
-
-
+        try{
+            PreparedStatement pStatement = conn.prepareStatement("DELETE FROM topics WHERE idTopic = ?");
+            pStatement.setInt(1,idTopic);
+            pStatement.execute();
+        } finally {
+            if(conn != null){
+                conn.close();
+            }
+        }
     }
 }
