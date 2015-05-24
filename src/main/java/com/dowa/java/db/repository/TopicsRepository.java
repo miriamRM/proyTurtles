@@ -34,7 +34,7 @@ public class TopicsRepository {
         Topics topic = new Topics();
         List<Topics> allTopics = new ArrayList<>();
         try{
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM topics");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM topics ORDER BY idTopic ASC");
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
                 topic.setIdTopic(result.getInt(1));

@@ -18,11 +18,12 @@ public class CommentsRepository {
     public void insertComment(Comments comment) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
         try{
-            PreparedStatement pStatement = conn.prepareStatement("INSERT INTO comments (idStory, idUser, comment) " +
-                    "VALUES (?, ?, ?)");
+            PreparedStatement pStatement = conn.prepareStatement("INSERT INTO comments (idStory, idUser, comment, " +
+                    "dateTime) VALUES (?, ?, ?, ?)");
             pStatement.setInt(1,comment.getIdStory());
             pStatement.setInt(2,comment.getIdUser());
             pStatement.setString(3,comment.getComment());
+            pStatement.setTimestamp(4,getCurrentTimeStamp());
             pStatement.execute();
         } finally {
             if(conn != null){
@@ -37,7 +38,8 @@ public class CommentsRepository {
         Comments comments = new Comments();
         List <Comments> allComments = new ArrayList<>();
         try{
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM comments WHERE idStory = ?");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM comments WHERE idStory = ? ORDER BY " +
+                    "dateTime DESC");
             pStatement.setInt(1,idStory);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
@@ -45,6 +47,7 @@ public class CommentsRepository {
                 comments.setIdStory(idStory);
                 comments.setIdUser(result.getInt(3));
                 comments.setComment(result.getString(4));
+                comments.setDateTime(result.getTimestamp(5));
                 allComments.add(comments);
             }
         } finally {
@@ -69,5 +72,11 @@ public class CommentsRepository {
                 conn.close();
             }
         }
+    }
+
+    //Method to get the current timeStamp from http://www.mkyong.com/jdbc/how-to-insert-timestamp-value-in-preparedstatement/
+    private static java.sql.Timestamp getCurrentTimeStamp() {
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Timestamp(today.getTime());
     }
 }

@@ -33,7 +33,7 @@ public class UserRepository {
         Connection conn = ConnectionToDB.getConnection();
         User user = new User();
         try{
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM users WHERE eMail = ?");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM users WHERE eMail = ? ORDER BY idUser ASC");
             pStatement.setString(1,eMail);
             ResultSet result = pStatement.executeQuery();
             if (result.next()){

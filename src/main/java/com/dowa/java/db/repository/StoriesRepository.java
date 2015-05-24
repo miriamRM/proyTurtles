@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,13 +20,14 @@ public class StoriesRepository {
         Connection conn = ConnectionToDB.getConnection();
         try {
             PreparedStatement pStatement = conn.prepareStatement("INSERT INTO stories (idUser, story, idTopic, up, " +
-                    "down, votes) VALUES (?,?,?,?,?,?)");
+                    "down, votes, dateTime) VALUES (?,?,?,?,?,?,?)");
             pStatement.setInt(1,story.getIdUser());
             pStatement.setString(2,story.getStory());
             pStatement.setInt(3,story.getIdTopic());
             pStatement.setInt(4,0); //al crear la nueva historia no hay  votos a favor ni en contra
             pStatement.setInt(5,0);
             pStatement.setInt(6,0);
+            pStatement.setTimestamp(7,getCurrentTimeStamp());
             pStatement.execute();
         } finally {
             if(conn != null){
@@ -40,7 +42,7 @@ public class StoriesRepository {
         Stories story = new Stories();
         List <Stories> allStories = new ArrayList<Stories>();
         try {
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories ORDER BY dateTime ASC");
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
                 story.setIdStory(result.getInt(1));
@@ -50,6 +52,7 @@ public class StoriesRepository {
                 story.setUp(result.getInt(5));
                 story.setDown(result.getInt(6));
                 story.setVotes(result.getInt(7));
+                story.setDateTime(result.getTimestamp(8));
                 allStories.add(story);
             }
         } finally {
@@ -66,7 +69,7 @@ public class StoriesRepository {
         Stories story = new Stories();
         List <Stories> allStories = new ArrayList<Stories>();
         try {
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idUser = ?");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idUser = ? ORDER BY dateTime ASC");
             pStatement.setInt(1,idUser);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
@@ -77,6 +80,7 @@ public class StoriesRepository {
                 story.setUp(result.getInt(5));
                 story.setDown(result.getInt(6));
                 story.setVotes(result.getInt(7));
+                story.setDateTime(result.getTimestamp(8));
                 allStories.add(story);
             }
         } finally {
@@ -101,5 +105,12 @@ public class StoriesRepository {
                 conn.close();
             }
         }
+    }
+
+    //Method to get the current timeStamp from http://www.mkyong.com/jdbc/how-to-insert-timestamp-value-in-preparedstatement/
+    private static java.sql.Timestamp getCurrentTimeStamp() {
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Timestamp(today.getTime());
+
     }
 }

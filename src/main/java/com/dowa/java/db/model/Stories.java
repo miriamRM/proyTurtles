@@ -1,5 +1,7 @@
 package com.dowa.java.db.model;
 
+import java.sql.Timestamp;
+
 /**
  * Created by rabanita on 22/05/15.
  */
@@ -11,6 +13,7 @@ public class Stories {
     private int up;
     private int down;
     private int votes;
+    private Timestamp dateTime;
 
     public void setIdStory(int idStory) {
         this.idStory = idStory;
@@ -66,5 +69,13 @@ public class Stories {
 
     public void setVotes(int votes) {
         this.votes = votes;
+    }
+
+    public Timestamp getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
     }
 }
