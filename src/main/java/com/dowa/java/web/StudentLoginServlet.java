@@ -31,7 +31,7 @@ public class StudentLoginServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         RequestDispatcher requestDispatcher;
-        String target = "/index.jsp";
+        String target = "/registry.jsp";
 
         if (session != null){
             req.setAttribute("session", session.getId());

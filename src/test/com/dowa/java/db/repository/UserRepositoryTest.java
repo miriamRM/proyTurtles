@@ -35,11 +35,20 @@ public class UserRepositoryTest extends TestCase {
         assertNotSame(0,row);
     }
 
+    /*//para poder Eliminar se tiene que borrar todo lo que de este dependa
     @Test
     public void testDeleteUser() throws Exception {
         UserRepository rep = new UserRepository();
         String mail = "a327306@uabc.edu.mx";
         rep.deleteUser(mail);
         assertNull(rep.findUserByMail(mail).getUserName());
+    }*/
+
+    @Test
+    public void testUsernameUsed() throws Exception {
+        UserRepository rep = new UserRepository();
+        String userName = "mimi";
+        boolean isUsed = rep.usernameUsed(userName);
+        assertEquals(false, isUsed);
     }
 }

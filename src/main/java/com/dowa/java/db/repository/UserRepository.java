@@ -50,6 +50,26 @@ public class UserRepository {
         return user;
     }
 
+    public boolean usernameUsed(String userName) throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        boolean isUsed;
+        try{
+            PreparedStatement pStatement = conn.prepareStatement("SELECT userName FROM users WHERE userName LIKE ?");
+            pStatement.setString(1,userName);
+            ResultSet result = pStatement.executeQuery();
+            if (!result.isBeforeFirst()){
+                isUsed = false; //the username isn't used
+            } else {
+                isUsed = true;
+            }
+        }finally {
+            if(conn != null){
+                conn.close();
+            }
+        }
+        return isUsed;
+    }
+
     //Modificar usuario
     public int updateUser(User user) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();

@@ -4,25 +4,51 @@
          version="2.4">
 
     <servlet>
-        <servlet-name>myServlet</servlet-name>
-        <servlet-class>com.dowa.java.web.HelloWorldServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
+        <servlet-name>signIn</servlet-name>
+        <servlet-class>com.dowa.java.web.UsersRegistry</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>myServlet</servlet-name>
-        <url-pattern>/hello-mvc-servlet</url-pattern>
+        <servlet-name>signIn</servlet-name>
+        <url-pattern>/Registro</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>studentLoginServlet</servlet-name>
-        <servlet-class>com.dowa.java.web.StudentLoginServlet</servlet-class>
+        <servlet-name>login</servlet-name>
+        <servlet-class>com.dowa.java.web.UsersLogin</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>studentLoginServlet</servlet-name>
-        <url-pattern>/login-mvc-servlet</url-pattern>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>home</servlet-name>
+        <servlet-class>com.dowa.java.web.HomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>home</servlet-name>
+        <url-pattern>/Home</url-pattern>
     </servlet-mapping>
 
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>
 </web-app>
+        <!--<servlet>
+                <servlet-name>myServlet</servlet-name>
+                <servlet-class>com.dowa.java.web.HelloWorldServlet</servlet-class>
+                <load-on-startup>1</load-on-startup>
+            </servlet>
+            <servlet-mapping>
+                <servlet-name>myServlet</servlet-name>
+                <url-pattern>/hello-mvc-servlet</url-pattern>
+            </servlet-mapping>
+
+            <servlet>
+                <servlet-name>studentLoginServlet</servlet-name>
+                <servlet-class>com.dowa.java.web.StudentLoginServlet</servlet-class>
+            </servlet>
+            <servlet-mapping>
+                <servlet-name>studentLoginServlet</servlet-name>
+                <url-pattern>/login-mvc-servlet</url-pattern>
+            </servlet-mapping> -->

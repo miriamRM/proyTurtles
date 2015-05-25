@@ -7,9 +7,10 @@
     <body style="text-align:center;">
         <c:if test="${session != null}">
             <div style="font-size: 24">
-                Hola <%= request.getParameter("name") %>! <br>
+                Hola <%= request.getAttribute("name") %>! <br>
                 Estas dentro de tu sesi&oacute;n.
                 Session ID = <c:out value="${session}"/>
+                Session idUser = <c:out value="${userId}"/>
             </div>
         </c:if>
         <a href="/login.jsp">Regresar a la pagina de acceso.</a>

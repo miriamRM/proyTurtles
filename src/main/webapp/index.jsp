@@ -2,17 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <body>
-        <h2>Bienvenido!</h2>
-        <Por favor llena toda la informaci&oacute;n que se te pide>
-
-        <form method="post" action="/hello-mvc-servlet">
-            <label for="name">Cu&aacute;l es tu nombre:</label>
-            <input type="text" name="name" id="name" />
-
-            <label for="name">Cu&aacute;l es tu apellido:</label>
-            <input type="text" name="lastName" id="lastName" />
-
-            <input type="submit"/>
-        </form>
+        <h1>MIRIAAAAM!!!! INDEEEX!</h1>
+        <!-- EN ESTA PAGINA SE DEBEN PRESENTAR TODAS LAS HISTORIAS QUE HAY -->
+        <div>
+            HISTORIAS
+        </div>
+        <!-- Mientras haya historias que mostrar, mostrarlas -->
+        <div>
+            <c:out value="${Historia}"/>
+            <form method="post" >
+                <input type="submit"> <c:out value="${porcientoUp}"/>
+                <input type="submit"> <c:out value="${porcentajeDown}">
+            </form>
+        </div>
     </body>
 </html>
