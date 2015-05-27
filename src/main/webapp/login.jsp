@@ -6,15 +6,15 @@
 
         <form method="post" action="/Login">
 
-            <label for="email">email:</label>
+            <label for="email">Email:</label>
             <input type="email" name="email" id="email" />
             </br>
 
-            <label for="pass">contrase&ntilde;a</label>
+            <label for="pass">Contrase&ntilde;a</label>
             <input type="password" name="pass" id="pass">
             </br>
 
-            <input type="submit"/>
+            <input type="submit" value="Acceder"/>
         </form>
         <c:choose>
             <c:when test = "${message != null}">

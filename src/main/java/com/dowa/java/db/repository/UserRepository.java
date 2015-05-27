@@ -50,6 +50,27 @@ public class UserRepository {
         return user;
     }
 
+    public User findUserById(int userId) throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        User user = new User();
+        try {
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM users WHERE userId = ?");
+            pStatement.setInt(1, userId);
+            ResultSet result = pStatement.executeQuery();
+            if (result.next()) {
+                user.setIdUser(userId);
+                user.setUserName(result.getString(2));
+                user.seteMail(result.getString(3));
+                user.setPass(result.getString(4));
+            }
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
+
     public boolean usernameUsed(String userName) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
         boolean isUsed;

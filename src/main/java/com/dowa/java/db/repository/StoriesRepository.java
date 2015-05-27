@@ -36,15 +36,34 @@ public class StoriesRepository {
         }
     }
 
+    //Contar total de elementos en la tabla
+    public int numRows() throws SQLException {
+        Connection conn  = ConnectionToDB.getConnection();
+        int totalRows;
+        try{
+            PreparedStatement pStatement = conn.prepareStatement("SELECT COUNT(*) FROM stories");
+            ResultSet result = pStatement.executeQuery();
+            result.next();
+            totalRows = result.getInt(1);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return totalRows;
+    }
+
     //Buscar todas las historias
-    public List<Stories> findAllStories() throws SQLException {
+    public List<Stories> findAllStories(int offset) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
-        Stories story = new Stories();
         List <Stories> allStories = new ArrayList<Stories>();
         try {
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories ORDER BY dateTime ASC");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories ORDER BY dateTime DESC " +
+                    "LIMIT 10 OFFSET ?");
+            pStatement.setInt(1,offset);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
+                Stories story = new Stories();
                 story.setIdStory(result.getInt(1));
                 story.setIdUser(result.getInt(2));
                 story.setStory(result.getString(3));

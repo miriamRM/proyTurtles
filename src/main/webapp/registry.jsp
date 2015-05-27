@@ -3,13 +3,7 @@
 <html>
     <body>
         <h2>Registro de Nuevo Usuario</h2>
-        <Por favor llena toda la informaci&oacute;n que se te pide>
-
-        <c:choose>
-            <c:when test="${!empty nombreUsado}">
-
-            </c:when>
-        </c:choose>
+        <p>Por favor llena toda la informaci&oacute;n que se te pide</p>
 
         <form method="post" action="/Registro">
             <label for="name">Elige un username:</label>
@@ -26,11 +20,11 @@
             </c:if>
             </br>
 
-            <label for="name">Escribe tu contraseña:</label>
+            <label for="name">Escribe tu contrase&ntilde;a:</label>
             <input type="passwoerd" name="pwd" id="pwd" />
             </br>
 
-            <input type="submit"/>
+            <input type="submit" value="Reg&iacute;strame!"/>
         </form>
     </body>
 </html>

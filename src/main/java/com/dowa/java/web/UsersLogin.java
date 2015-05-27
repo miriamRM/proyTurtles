@@ -49,7 +49,7 @@ public class UsersLogin extends HttpServlet {
                     if (session != null){
                         req.setAttribute("name",user.getUserName());
                         session.setAttribute("userId", user.getIdUser());
-                        target = "/home.jsp";
+                        target = "/index.jsp";
                     }
                 } else{
                     req.setAttribute("malPass","Contraseña incorrecta");
