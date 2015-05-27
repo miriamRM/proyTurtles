@@ -10,12 +10,8 @@
                 padding-left: 5px;
             }
             .center{
-                position: relative;
                 left: 170px;
-                margin-top: inherit;
-                margin-right: inherit;
-                margin-bottom: inherit;
-                margin-left: inherit;
+                margin-left: 170px;
             }
         </style>
     </head>

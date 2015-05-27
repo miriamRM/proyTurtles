@@ -10,7 +10,7 @@
                 padding-left: 5px;
             }
             .center{
-                position: relative;
+                margin-left: 170px;
                 left: 170px;
             }
         </style>

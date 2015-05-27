@@ -10,7 +10,7 @@
                 padding-left: 5px;
             }
             .center{
-                position: relative;
+                margin-left: 170px;
                 left: 170px;
             }
         </style>
@@ -43,6 +43,7 @@
             <c:forEach var="item" items="${historias}">
                     <p><c:out value="${item.getStory()}"/></p>
                     idTopic : <c:out value="${item.getIdTopic()}"/></br>
+                    idUser : <c:out value="${item.getIdUser()}"/></br>
                     <c:choose>
                         <c:when test="${item.getVotes() != 0}">
                             A favor :<c:out value="${item.getUp() * 100 / item.getVotes()}"/> %</br>

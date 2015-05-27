@@ -10,8 +10,11 @@
                 padding-left: 5px;
             }
             .center{
-                position: relative;
+                margin-left: 170px;
                 left: 170px;
+            }
+            .noLogin{
+                color: red;
             }
         </style>
     </head>
@@ -38,28 +41,46 @@
         </div>
 
         <div class="center">
-            <h2>Registro de Nuevo Usuario</h2>
-            <p>Por favor llena toda la informaci&oacute;n que se te pide</p>
+            <h2>Nueva historia</h2>
+            <p></p>
 
-            <form method="post" action="/Registro">
+            <form method="post" action="/NuevaHist">
                 <table>
-                    <tr><label for="story">Porque tan indeciso? Cuentanos tu historia :</label></tr>
-                    <tr><textarea name="story" id="story" rows="5" cols="50" maxlength="512"> </textarea></tr>
+                    <tr>
+                        <td><label for="story">Porque tan indeciso? Cuentanos tu historia :</label></td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="story" id="story" rows="5" cols="50" maxlength="512"> </textarea></td>
+                        <c:if test="${!empty histVacio}">
+                            <td><c:out value="${histVacio}"/></td>
+                        </c:if>
+                    </tr>
 
-                    <tr><label for="tema">Elige el tema :</label></tr>
-                    <tr><select name='role'>
-                        <option value="${seleccion}" selected>${selected}</option>
-                        <c:forEach var="tema" items="${temas}">
-                            <c:if test="${tema != selected}">
-                                <option value="${tema}"> <c:out value="${role}"/> </option>
-                            </c:if>
-                        </c:forEach>
-                        </select>
+                    <tr>
+                        <td><label for="tema">Elige el tema :</label></td>
+                    </tr>
+                    <tr>
+                        <td><select name='tema' id="tema">
+                            <option value="${selec.getIdTopic()}" selected> <c:out value="${selec.getTopic()}"/></option>
+                            <c:forEach var="tema" items="${temas}">
+                                <c:if test="${tema.getIdTopic() != selec.getIdTopic()}">
+                                    <option value="${tema.getIdTopic()}"> <c:out value="${tema.getTopic()}"/> </option>
+                                </c:if>
+                            </c:forEach>
+                            </select>
+                        </td>
                     </tr>
                 </table>
+
                 <p> Animate y espera a las respuestas!</p>
                 <input type="submit" value="Publicar!"/>
+
             </form>
+
+            <c:if test="${!empty noLogin}">
+                <h2 class="noLogin"><a href="/Login">aqui</a></h2>
+            </c:if>
+
         </div>
     </body>
 </html>

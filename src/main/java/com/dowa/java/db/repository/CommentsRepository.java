@@ -35,7 +35,6 @@ public class CommentsRepository {
     //Buscar todos los comentarios de una historia
     public List<Comments> findCommentsOfStory(int idStory) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
-        Comments comments = new Comments();
         List <Comments> allComments = new ArrayList<>();
         try{
             PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM comments WHERE idStory = ? ORDER BY " +
@@ -43,6 +42,7 @@ public class CommentsRepository {
             pStatement.setInt(1,idStory);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
+                Comments comments = new Comments();
                 comments.setIdComment(result.getInt(1));
                 comments.setIdStory(idStory);
                 comments.setIdUser(result.getInt(3));

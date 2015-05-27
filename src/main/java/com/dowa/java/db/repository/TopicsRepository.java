@@ -31,12 +31,12 @@ public class TopicsRepository {
     //Buscar todos los topics
     public List<Topics> findAllTopics() throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
-        Topics topic = new Topics();
         List<Topics> allTopics = new ArrayList<>();
         try{
             PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM topics ORDER BY idTopic ASC");
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
+                Topics topic = new Topics();
                 topic.setIdTopic(result.getInt(1));
                 topic.setTopic(result.getString(2));
                 allTopics.add(topic);

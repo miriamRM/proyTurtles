@@ -118,7 +118,6 @@ public class StoriesRepository {
     //Buscar historias segun el usuario
     public List <Stories> findStoriesFromUser(int idUser, int offset) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
-        Stories story = new Stories();
         List <Stories> allStories = new ArrayList<Stories>();
         try {
             PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idUser = ? ORDER BY " +
@@ -127,6 +126,7 @@ public class StoriesRepository {
             pStatement.setInt(2,offset);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
+                Stories story = new Stories();
                 story.setIdStory(result.getInt(1));
                 story.setIdUser(result.getInt(2));
                 story.setStory(result.getString(3));
@@ -143,6 +143,24 @@ public class StoriesRepository {
             }
         }
         return allStories;
+    }
+
+    //Obtener el ultimo idStory de la tabla
+    public int getLastRecord() throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        int lastRec;
+        try {
+            PreparedStatement pStatement = conn.prepareStatement("SELECT idStory FROM stories ORDER BY idStory DESC " +
+                    "LIMIT 1");
+            ResultSet result = pStatement.executeQuery();
+            result.next();
+            lastRec = result.getInt(1);
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return lastRec;
     }
 
     //Modificar historia
