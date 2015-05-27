@@ -42,12 +42,12 @@ public class UsersProfile extends HttpServlet {
                 req.setAttribute("totPag", numPag);
 
                 int offSet = getOffset(page);
-                List<Stories> allStories = storyRepo.findAllStories(offSet);
+                List<Stories> storiesFromUser = storyRepo.findStoriesFromUser(idUser, offSet);
 
-                if (allStories.size() == 0){
+                if (storiesFromUser.size() == 0){
                     req.setAttribute("noHistorias", "No hay historias, ¿porque no realizas una?");
                 } else {
-                    req.setAttribute("historias", allStories);
+                    req.setAttribute("historias", storiesFromUser);
                     //List<User> allUsers = userRepo.findUserById();
                 }
 
