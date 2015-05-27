@@ -2,6 +2,7 @@ package com.dowa.java.db.repository;
 
 import com.dowa.java.db.connection.ConnectionToDB;
 import com.dowa.java.db.model.Stories;
+import com.dowa.java.db.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,6 +52,32 @@ public class StoriesRepository {
             }
         }
         return totalRows;
+    }
+
+    //Buscar Historia por Id
+    public Stories findStoryById(int idStory) throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        Stories story = new Stories();
+        try{
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idStory = ?");
+            pStatement.setInt(1,idStory);
+            ResultSet result = pStatement.executeQuery();
+            while (result.next()){
+                story.setIdStory(idStory);
+                story.setIdUser(result.getInt(2));
+                story.setStory(result.getString(3));
+                story.setIdTopic(result.getInt(4));
+                story.setUp(result.getInt(5));
+                story.setDown(result.getInt(6));
+                story.setVotes(result.getInt(7));
+                story.setDateTime(result.getTimestamp(8));
+            }
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return story;
     }
 
     //Buscar todas las historias
@@ -110,7 +137,25 @@ public class StoriesRepository {
         return allStories;
     }
 
-    //Modificar... no se pueden modificar las historias
+    //Modificar historia
+    public int updateStory(Stories story) throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        int updatedRow;
+        try{
+            PreparedStatement pStatement = conn.prepareStatement("UPDATE stories SET  up = ?, down = ?, votes = ? " +
+                    "WHERE idStory = ?");
+            pStatement.setInt(1,story.getUp());
+            pStatement.setInt(2,story.getDown());
+            pStatement.setInt(3,story.getVotes());
+            pStatement.setInt(4,story.getIdStory());
+            updatedRow = pStatement.executeUpdate();
+        } finally {
+            if(conn != null){
+                conn.close();
+            }
+        }
+        return updatedRow;
+    }
 
     //Eliminar
     public void deleteStory(int idStory) throws SQLException {

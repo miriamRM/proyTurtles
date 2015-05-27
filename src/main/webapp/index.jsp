@@ -2,18 +2,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-    <style>
-    .left {
-        position: relative;
-        top: 50px;
-        width: 150px;
-        padding-left: 5px;
-    }
-    .center{
-        position: relative;
-        left: 170px;
-    }
-    </style>
+        <style>
+            .left {
+                position: relative;
+                top: 50px;
+                width: 150px;
+                padding-left: 5px;
+            }
+            .center{
+                position: relative;
+                left: 170px;
+            }
+        </style>
     </head>
     <body>
         <!-- EN ESTA PAGINA SE DEBEN PRESENTAR TODAS LAS HISTORIAS QUE HAY -->
@@ -22,6 +22,7 @@
         </div>
 
         <div class="left">
+            <p><a href="/HOME">Inicio</a></p>
             <c:choose>
                 <c:when test = "${userId == null}">
                     <p><a href="/Login">Login</a></p>
@@ -55,7 +56,7 @@
                             En contra : 0 %</br>
                         </c:when>
                     </c:choose>
-                    <p><a href="">seguir viendo...<a></p>
+                    <p><a href="/Historia?Hid=${item.getIdStory()}">seguir viendo...<a></p>
             </c:forEach>
             <c:forEach var="i" begin="0" end="${totPag}">
                 <a href="?pag=${i+1}"> <c:out value="${i+1}"/> </a>

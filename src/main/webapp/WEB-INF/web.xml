@@ -27,7 +27,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>story</servlet-name>
+        <servlet-class>com.dowa.java.web.StoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>story</servlet-name>
+        <url-pattern>/Historia</url-pattern>
     </servlet-mapping>
 
     <session-config>

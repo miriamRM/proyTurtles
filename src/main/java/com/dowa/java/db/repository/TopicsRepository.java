@@ -49,6 +49,25 @@ public class TopicsRepository {
         return allTopics;
     }
 
+    //Buscar Topic por Id
+    public String findTopicById(int idTopic) throws SQLException {
+        Connection conn = ConnectionToDB.getConnection();
+        String topic = null;
+        try {
+            PreparedStatement pStatement = conn.prepareStatement("SELECT topic FROM topics WHERE idTopic = ?");
+            pStatement.setInt(1, idTopic);
+            ResultSet result = pStatement.executeQuery();
+            while (result.next()){
+                topic = result.getString(1);
+            }
+        } finally {
+            if(conn != null){
+                conn.close();
+            }
+        }
+        return topic;
+    }
+
     //Modificar
     public int updateTopic(Topics topic) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();

@@ -54,7 +54,7 @@ public class UserRepository {
         Connection conn = ConnectionToDB.getConnection();
         User user = new User();
         try {
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM users WHERE userId = ?");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM users WHERE idUser = ?");
             pStatement.setInt(1, userId);
             ResultSet result = pStatement.executeQuery();
             if (result.next()) {
