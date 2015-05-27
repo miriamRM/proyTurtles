@@ -37,7 +37,7 @@ public class UsersRegistry  extends HttpServlet {
             if (repo.usernameUsed(name)) {
                 req.setAttribute("nombreUsado", "El Nombre de usuario ha sido usado, por favor elige otro.");
                 target = "/registry.jsp";
-            } else if (repo.findUserByMail(email).geteMail().equals(email)) {
+            } else if (repo.findUserByMail(email).geteMail() != null) {
                 req.setAttribute("emailUsado", "Este correo ya ha sido usado, por favor usa otro");
                 target = "/registry.jsp";
             } else {

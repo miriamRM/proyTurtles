@@ -38,11 +38,17 @@ public class StoriesRepository {
     }
 
     //Contar total de elementos en la tabla
-    public int numRows() throws SQLException {
+    public int numRows(int where) throws SQLException {
         Connection conn  = ConnectionToDB.getConnection();
         int totalRows;
         try{
-            PreparedStatement pStatement = conn.prepareStatement("SELECT COUNT(*) FROM stories");
+            PreparedStatement pStatement;
+            if (where == 0) {
+                pStatement = conn.prepareStatement("SELECT COUNT(*) FROM stories");
+            } else {
+                pStatement = conn.prepareStatement("SELECT COUNT(*) FROM stories where idUser = ?");
+                pStatement.setInt(1,where);
+            }
             ResultSet result = pStatement.executeQuery();
             result.next();
             totalRows = result.getInt(1);
@@ -110,13 +116,15 @@ public class StoriesRepository {
     }
 
     //Buscar historias segun el usuario
-    public List <Stories> findStoriesFromUser(int idUser) throws SQLException {
+    public List <Stories> findStoriesFromUser(int idUser, int offset) throws SQLException {
         Connection conn = ConnectionToDB.getConnection();
         Stories story = new Stories();
         List <Stories> allStories = new ArrayList<Stories>();
         try {
-            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idUser = ? ORDER BY dateTime ASC");
+            PreparedStatement pStatement = conn.prepareStatement("SELECT * FROM stories WHERE idUser = ? ORDER BY " +
+                    "dateTime DESC LIMIT 10 OFFSET ?");
             pStatement.setInt(1,idUser);
+            pStatement.setInt(2,offset);
             ResultSet result = pStatement.executeQuery();
             while (result.next()){
                 story.setIdStory(result.getInt(1));

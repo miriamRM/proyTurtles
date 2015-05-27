@@ -33,6 +33,7 @@ public class StoryServlet extends HttpServlet {
                 req.setAttribute("historia", story);
                 int idTopic = story.getIdTopic();
                 int idUser = story.getIdUser();
+                req.setAttribute("idUser",idUser);
 
                 String topic = topicRepo.findTopicById(idTopic);
                 req.setAttribute("tema", topic);

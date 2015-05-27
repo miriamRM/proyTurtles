@@ -39,6 +39,24 @@
         <url-pattern>/Historia</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>com.dowa.java.web.UsersProfile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/Perfil</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>newStory</servlet-name>
+        <servlet-class>com.dowa.java.web.NewStory</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>newStory</servlet-name>
+        <url-pattern>/NuevaHist</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>1</session-timeout>
     </session-config>

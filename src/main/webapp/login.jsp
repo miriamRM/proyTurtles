@@ -31,9 +31,9 @@
                     <h3>Bienvenido <h3><c:out value="${userName}"/>
                     <p><a href=""> Perfil </a></p>
                     <p><a href="/Home">Logout</a></p>
-                    <p><a href="">Nueva Historia<a><p>
                 </c:when>
             </c:choose>
+            <p><a href="/NuevaHist">Nueva Historia<a><p>
         </div>
         <div class="center">
             <h2>P&aacute;gina de acceso a tu cuenta</h2>

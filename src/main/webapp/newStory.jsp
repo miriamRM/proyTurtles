@@ -38,26 +38,28 @@
         </div>
 
         <div class="center">
-            <h2>Perfil de <c:out value="${userName}"/> </h2>
+            <h2>Registro de Nuevo Usuario</h2>
+            <p>Por favor llena toda la informaci&oacute;n que se te pide</p>
 
-            <c:forEach var="item" items="${historias}">
-                    <p><c:out value="${item.getStory()}"/></p>
-                    idTopic : <c:out value="${item.getIdTopic()}"/></br>
-                    <c:choose>
-                        <c:when test="${item.getVotes() != 0}">
-                            A favor :<c:out value="${item.getUp() * 100 / item.getVotes()}"/> %</br>
-                            En contra :<c:out value="${item.getDown() * 100 / item.getVotes()}"/> %</br>
-                        </c:when>
-                        <c:when test="${item.getVotes() == 0}">
-                            A favor : 0 %</br>
-                            En contra : 0 %</br>
-                        </c:when>
-                    </c:choose>
-                    <p><a href="/Historia?Hid=${item.getIdStory()}">seguir viendo...<a></p>
-            </c:forEach>
-            <c:forEach var="i" begin="0" end="${totPag}">
-                <a href="?pag=${i+1}"> <c:out value="${i+1}"/> </a>
-            </c:forEach>
+            <form method="post" action="/Registro">
+                <table>
+                    <tr><label for="story">Porque tan indeciso? Cuentanos tu historia :</label></tr>
+                    <tr><textarea name="story" id="story" rows="5" cols="50" maxlength="512"> </textarea></tr>
+
+                    <tr><label for="tema">Elige el tema :</label></tr>
+                    <tr><select name='role'>
+                        <option value="${seleccion}" selected>${selected}</option>
+                        <c:forEach var="tema" items="${temas}">
+                            <c:if test="${tema != selected}">
+                                <option value="${tema}"> <c:out value="${role}"/> </option>
+                            </c:if>
+                        </c:forEach>
+                        </select>
+                    </tr>
+                </table>
+                <p> Animate y espera a las respuestas!</p>
+                <input type="submit" value="Publicar!"/>
+            </form>
         </div>
     </body>
 </html>

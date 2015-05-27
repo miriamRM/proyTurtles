@@ -22,7 +22,7 @@
         </div>
 
         <div class="left">
-            <p><a href="/HOME">Inicio</a></p>
+            <p><a href="/Home">Inicio</a></p>
             <c:choose>
                 <c:when test = "${userId == null}">
                     <p><a href="/Login">Login</a></p>
@@ -32,9 +32,9 @@
                     <h3>Bienvenido <h3><c:out value="${userName}"/>
                     <p><a href=""> Perfil </a></p>
                     <p><a href="/Home">Logout</a></p>
-                    <p><a href="">Nueva Historia<a><p>
                 </c:when>
             </c:choose>
+            <p><a href="/NuevaHist">Nueva Historia<a><p>
         </div>
 
         <div class="center">

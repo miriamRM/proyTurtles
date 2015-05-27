@@ -35,9 +35,9 @@
                     <h3>Bienvenido <h3><c:out value="${userName}"/>
                     <p><a href=""> Perfil </a></p>
                     <p><a href="/Home">Logout</a></p>
-                    <p><a href="">Nueva Historia<a><p>
                 </c:when>
             </c:choose>
+            <p><a href="/NuevaHist">Nueva Historia<a><p>
         </div>
 
         <div class="center">
@@ -47,7 +47,7 @@
             <form method="post" action="/Registro">
                 <table>
                     <tr>
-                        <td><label for="name">Elige un username:</label></td>
+                        <td><label for="userName">Elige un username:</label></td>
                         <td><input type="text" name="userName" id="userName" /></td>
                         <c:if test="${!empty nombreUsado}">
                             <td><p style="color: red"> <c:out value="${nombreUsado}"/></p><td>
@@ -55,7 +55,7 @@
                     </tr>
 
                     <tr>
-                        <td><label for="name">Escribe tu e-mail:</label></td>
+                        <td><label for="email">Escribe tu e-mail:</label></td>
                         <td><input type="email" name="email" id="email" /></td>
                         <c:if test="${!empty emailUsado}">
                             <td><p style="color: red"> <c:out value="${emailUsado}"/></p></td>
@@ -63,7 +63,7 @@
                     </tr>
 
                     <tr>
-                        <td><label for="name">Escribe tu contrase&ntilde;a:</label></td>
+                        <td><label for="pwd">Escribe tu contrase&ntilde;a:</label></td>
                         <td><input type="password" name="pwd" id="pwd" /></td>
                         <td></td>
                     </tr>

@@ -33,7 +33,7 @@ public class HomeServlet extends HttpServlet {
         UserRepository userRepo = new UserRepository();
 
         try {
-            int totRows = storyRepo.numRows();
+            int totRows = storyRepo.numRows(0);
             int numPag = totRows / 10; //10 num de hisorias que regresa la bd cada vez
             req.setAttribute("totPag", numPag);
 

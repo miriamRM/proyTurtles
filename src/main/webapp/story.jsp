@@ -36,13 +36,13 @@
                     <h3>Bienvenido <h3><c:out value="${userName}"/>
                     <p><a href=""> Perfil </a></p>
                     <p><a href="/Home">Logout</a></p>
-                    <p><a href="">Nueva Historia<a><p>
                 </c:when>
             </c:choose>
+            <p><a href="/NuevaHist">Nueva Historia<a><p>
         </div>
 
         <div class="center">
-            <h2><a href=""><c:out value="${user}"/></a> escribi&oacute; la siguiente historia:</h2>
+            <h2><a href="/Perfil?Uid=${idUser}"><c:out value="${user}"/></a> escribi&oacute; la siguiente historia:</h2>
             <table class="historia">
                 <tr>
                     <td class="historia"> <h3> <p> <c:out value="${historia.getStory()}"/> </p> </h3> </td>
