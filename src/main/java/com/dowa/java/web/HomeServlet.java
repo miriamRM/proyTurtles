@@ -25,7 +25,7 @@ public class HomeServlet extends HttpServlet {
         if (req.getParameter("pag") == null){
             page = 0;
         }else {
-            page = Integer.valueOf(req.getParameter("pag"));
+            page = Integer.valueOf(req.getParameter("pag")) - 1;
         }
         String target = "/index.jsp";
         RequestDispatcher requestDispatcher;
