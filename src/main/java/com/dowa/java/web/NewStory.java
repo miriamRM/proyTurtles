@@ -39,7 +39,7 @@ public class NewStory extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
-        String target = "/story.jsp";
+        String target = "/Historia";
         HttpSession session = req.getSession(false);
         //if (session != null) {
             //int idUser = (Integer) session.getAttribute("userId");
@@ -48,6 +48,7 @@ public class NewStory extends HttpServlet {
             StoriesRepository storysRepo = new StoriesRepository();
             String historia = req.getParameter("story");
             String tema = req.getParameter("tema");
+            int idStory = 0;
 
             try {
                 if (historia == null) {
@@ -60,8 +61,9 @@ public class NewStory extends HttpServlet {
                     story.setIdTopic(Integer.valueOf(tema));
                     storysRepo.insertStory(story);
 
-                    int idStory = storysRepo.getLastRecord();
+                    idStory = storysRepo.getLastRecord();
                     req.setAttribute("idStory",idStory);
+                    target = target + "?Hid=" + String.valueOf(idStory);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
